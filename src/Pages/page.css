@@ -1,0 +1,11 @@
+.hoverup{
+    transform: translateY(0px);
+    transition: 0.4s;
+}
+.hoverup:hover{
+    transition: 0.4s;
+    transform: translateY(-3px);
+}
+.w100px{
+    width: 100px;
+}

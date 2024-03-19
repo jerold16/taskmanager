@@ -2,15 +2,17 @@ import React, { useContext, useState } from 'react'
 import { Offcanvas } from 'react-bootstrap'
 import SideBar from './SideBar'
 import { Store } from '../Context/StateStore'
+import { useNavigate } from 'react-router-dom'
 
 const NavBarComponent = () => {
     let {show,setshow}=useContext(Store)
     const handleClose=()=>{
         setshow(false)
     }
+    let navigate=useNavigate()
   return (
     <div className='min-h-[10vh] bg-white sticky-top border-bottom border-1 border-slate-500 flex items-center justify-between px-3'>
-       <img src={require('../Assests/meridawebsitelogo.png')} width={160} alt="Logo" />
+       <img onClick={()=>navigate('/dashboard')} src={require('../Assests/meridawebsitelogo.png')} width={160} alt="Logo" />
        <div className='flex items-center gap-2'>
         <button className='d-none d-sm-block  '>
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">

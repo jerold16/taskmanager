@@ -1,9 +1,17 @@
 import React, { useContext, useEffect } from 'react'
 import { Store } from '../Context/StateStore';
+import axios from 'axios';
+import { hostName } from '../App';
+import Loading from '../Component/Loading';
+import TableRow from '../Component/TableRow';
 const CompletedTask = () => {
-    let { setactive } = useContext(Store);
+    let { setactive,completedTask,setCompletedtask,apiCallTaskChangesCall } = useContext(Store);
     useEffect(() => {
       setactive("completed");
+      axios.get(`${hostName}/api/CompletedSubTasks`).then((response)=>{
+           console.log(response.data);
+           setCompletedtask(response.data)
+      }).catch((error)=>{console.log(error);})
     }, []);
     return (
       <div className="poppins p-3">
@@ -24,15 +32,8 @@ const CompletedTask = () => {
               </tr>
             </thead>
             <tbody>
-              <tr >
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                {/* Add more data cells as needed */}
-              </tr>
+            <TableRow obj={completedTask}/>
+           
               {/* Add more rows as needed */}
             </tbody>
           </table>

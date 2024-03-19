@@ -11,6 +11,7 @@ import ComOnTime from "./ComOnTime";
 import ComAfterTime from "./ComAfterTime";
 import OverDue from "./OverDue";
 import { Spinner } from "react-bootstrap";
+import TaskDetails from "./TaskDetails";
 
 const Dashboard = () => {
     const {currentDate,user}=useContext(Store)
@@ -34,6 +35,7 @@ const Dashboard = () => {
                 <Route path="/completedOntime" element={<ComOnTime/>} />
                 <Route path="/completedAfterTime" element={<ComAfterTime/>}/>
                 <Route path="/overdue" element={<OverDue/>} /> 
+                <Route path="/taskdetails/:id" element={<TaskDetails/>}/>
 
             </Routes>
            </div>

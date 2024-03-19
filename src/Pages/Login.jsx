@@ -33,7 +33,7 @@ const Login = () => {
   return (
     <div className='min-h-[100vh] poppins flex '>
         <div style={{backgroundColor:"#4c3575"}} 
-        className='m-auto border-1 shadow-lg p-3 rounded-xl col-xl-4'>
+        className='m-auto border-1 shadow-lg p-3 col-12 rounded-xl col-xl-4'>
             <img src={require('../Assests/meridawebsitelogowhite.png')} className=' mx-auto my-3' width={160} alt="Company image" />
       <h2 className='text-center text-slate-100'>Sign In</h2>
       <form className='flex w-5/6 mx-auto text-white flex-col my-3 items-center' onSubmit={handleSubmit}>

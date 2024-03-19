@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
 import { hostName } from '../App'
+import { useNavigate } from 'react-router-dom'
 
 
 export const Store=createContext(null)
@@ -10,8 +11,9 @@ const StateStore = (props) => {
     const currentDate=(new Date()).toString().slice(0,16)
     const [allDetails,setAllDetails]=useState()
     const [user,setUser]=useState()
+    const [pendingSubTask,setpendingSubTask]=useState()
+    const [completedTask,setCompletedtask]=useState()
     useEffect(()=>{
-        setactive('dashboard')
         async function apicall (){
         await axios.get(`${hostName}/api/EmployeeDetailsL/`).then((response)=>{
             setUser(response.data)
@@ -27,8 +29,15 @@ const StateStore = (props) => {
        }
        apicall()
     },[])
+    let apiCallTaskChangesCall=(e,pid)=>{
+        let bool=e.target.value=='completed'?true:false
+        axios.put(`${hostName}/api/ParticularUserTasks/`,{id:pid,status:bool}).then((response)=>{
+            
+            window.location.reload()
+        }).catch((error)=>{console.log(error);window.location.reload()})
+    }
     //Storage to distribute
-    const storeValue={allDetails,show,setshow,setUser,user,activepage,setactive,currentDate}
+    const storeValue={apiCallTaskChangesCall,completedTask,setCompletedtask,allDetails,pendingSubTask,setpendingSubTask,show,setshow,setUser,user,activepage,setactive,currentDate}
   return (
     <Store.Provider value={storeValue} >
         {props.children}
